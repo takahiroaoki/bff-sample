@@ -1,0 +1,13 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Query {
+  findAll: [User!]!
+}
+
+"""user"""
+type User {
+  id: String!
+  mail: String!
+}
