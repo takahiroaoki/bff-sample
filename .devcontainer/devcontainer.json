@@ -1,0 +1,16 @@
+{
+	"name": "bff-sample",
+	"dockerComposeFile": [
+		"docker-compose.app.yml"
+	],
+    "service": "bff-sample",
+	"workspaceFolder": "/mnt",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.vscode-typescript-next",
+				"ms-azuretools.vscode-docker"
+			]
+		}
+	}
+}
