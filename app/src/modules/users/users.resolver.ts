@@ -1,5 +1,6 @@
 import { Query, Resolver } from "@nestjs/graphql";
 import { User } from "./models/user.model";
+import { BadRequestException } from "@nestjs/common";
 
 @Resolver(() => User)
 export class UsersResolver {

@@ -5,6 +5,8 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { UsersModule } from './modules/users/users.module';
 import { accessLogger } from './common/middleware/logger.middleware';
+import { APP_FILTER } from '@nestjs/core';
+import { AllExceptionsFilter } from './common/filter/all-exception.filter';
 
 @Module({
   imports: [
@@ -17,7 +19,12 @@ import { accessLogger } from './common/middleware/logger.middleware';
     UsersModule,
   ],
   controllers: [AppController],
-  providers: [],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: AllExceptionsFilter,
+    }
+  ],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
