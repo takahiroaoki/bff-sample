@@ -7,7 +7,7 @@ import { UsersModule } from './modules/users/users.module';
 import { accessLogger } from './common/middleware/logger.middleware';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { AllExceptionsFilter } from './common/filter/all-exception.filter';
-import { LoggingInterceptor } from './common/interceptor/logging.interceptor';
+import { PerformanceLoggingInterceptor } from './common/interceptor/performance-logging.interceptor';
 
 @Module({
   imports: [
@@ -27,7 +27,7 @@ import { LoggingInterceptor } from './common/interceptor/logging.interceptor';
     },
     {
       provide: APP_INTERCEPTOR,
-      useClass: LoggingInterceptor,
+      useClass: PerformanceLoggingInterceptor,
     }
   ],
 })
