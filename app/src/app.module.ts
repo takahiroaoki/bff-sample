@@ -1,9 +1,10 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { UsersModule } from './modules/users/users.module';
+import { accessLogger } from './middleware/logger.middleware';
 
 @Module({
   imports: [
@@ -18,4 +19,11 @@ import { UsersModule } from './modules/users/users.module';
   controllers: [AppController],
   providers: [],
 })
-export class AppModule { }
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(accessLogger)
+      .exclude('/private/(.*)')
+      .forRoutes('/*');
+  }
+}
