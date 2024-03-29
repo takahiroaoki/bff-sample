@@ -1,4 +1,4 @@
-import { Module, UseGuards } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { UsersResolver } from './users.resolver';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from 'src/common/guard/auth.guard';
