@@ -7,6 +7,7 @@ import { format } from 'util';
 export class PerformanceLoggingInterceptor implements NestInterceptor {
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
         const start = Date.now();
+
         const startMessage = '[START]'
         Logger.log(startMessage);
 

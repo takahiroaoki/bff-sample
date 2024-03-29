@@ -8,6 +8,7 @@ import { accessLogger } from './common/middleware/logger.middleware';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { AllExceptionsFilter } from './common/filter/all-exception.filter';
 import { PerformanceLoggingInterceptor } from './common/interceptor/performance-logging.interceptor';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -16,6 +17,12 @@ import { PerformanceLoggingInterceptor } from './common/interceptor/performance-
       playground: true,
       autoSchemaFile: join(process.cwd(), 'schema.gql'),
       sortSchema: true,
+    }),
+    ConfigModule.forRoot({
+      envFilePath: [
+        join(process.cwd(), 'src/config/.env.dev'),
+      ],
+      isGlobal: true,
     }),
     UsersModule,
   ],
