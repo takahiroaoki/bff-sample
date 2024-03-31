@@ -7,7 +7,6 @@ export class UsersResolver {
 
     @Query(() => [User])
     findAll(): Promise<User[]> {
-        console.log('findAll')
         return Promise.resolve([
             {
                 id: '1',

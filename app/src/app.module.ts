@@ -4,10 +4,11 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { UsersModule } from './module/users/users.module';
 import { accessLogger } from './middleware/logger.middleware';
-import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { AllExceptionsFilter } from './filter/all-exception.filter';
 import { PerformanceInterceptor } from './interceptor/performance.interceptor';
 import { ConfigModule } from '@nestjs/config';
+import { AuthGuard } from './guard/auth.guard';
 
 @Module({
   imports: [
@@ -34,14 +35,17 @@ import { ConfigModule } from '@nestjs/config';
     {
       provide: APP_INTERCEPTOR,
       useClass: PerformanceInterceptor,
-    }
+    },
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
   ],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(accessLogger)
-      .exclude('/private/(.*)')
       .forRoutes('/*');
   }
 }
