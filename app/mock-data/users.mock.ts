@@ -35,5 +35,5 @@ export const usersMockData: UsersMockData = {
                 mail: "test5@example.com"
             },
         ]
-    }
+    },
 }
