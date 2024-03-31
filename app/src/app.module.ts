@@ -2,11 +2,11 @@ import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
-import { UsersModule } from './modules/users/users.module';
-import { accessLogger } from './common/middleware/logger.middleware';
+import { UsersModule } from './module/users/users.module';
+import { accessLogger } from './middleware/logger.middleware';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
-import { AllExceptionsFilter } from './common/filter/all-exception.filter';
-import { PerformanceInterceptor } from './common/interceptor/performance.interceptor';
+import { AllExceptionsFilter } from './filter/all-exception.filter';
+import { PerformanceInterceptor } from './interceptor/performance.interceptor';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
@@ -19,7 +19,7 @@ import { ConfigModule } from '@nestjs/config';
     }),
     ConfigModule.forRoot({
       envFilePath: [
-        join(process.cwd(), 'src/config/.env.dev'),
+        join(process.cwd(), 'env/dev.env'),
       ],
       isGlobal: true,
     }),
