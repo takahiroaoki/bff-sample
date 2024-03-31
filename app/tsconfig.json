@@ -16,6 +16,12 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    /* added by me */
+    "paths": {
+      "@mock-data/*": [
+        "mock-data/*"
+      ],
+    }
   }
 }

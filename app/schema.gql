@@ -3,7 +3,8 @@
 # ------------------------------------------------------
 
 type Query {
-  findAll: [User!]!
+  user(id: String!): User
+  users: [User!]!
 }
 
 """user"""
