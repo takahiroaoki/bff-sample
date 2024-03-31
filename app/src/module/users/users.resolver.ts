@@ -1,21 +1,13 @@
 import { Query, Resolver } from "@nestjs/graphql";
 import { User } from "src/model/user.model";
+import { UsersService } from "./users.service";
 
 @Resolver(() => User)
 export class UsersResolver {
-    constructor() { }
+    constructor(private readonly usersService: UsersService) { }
 
     @Query(() => [User])
-    findAll(): Promise<User[]> {
-        return Promise.resolve([
-            {
-                id: '1',
-                mail: 'test1@example.com',
-            },
-            {
-                id: '2',
-                mail: 'test2@example.com',
-            },
-        ])
+    async users(): Promise<User[]> {
+        return this.usersService.findAll();
     }
 }
