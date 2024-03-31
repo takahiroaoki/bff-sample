@@ -9,4 +9,8 @@ export class UsersService {
     async findAll(): Promise<User[]> {
         return this.usersDao.findAll();
     }
+
+    async findOneById(id: string): Promise<User> {
+        return this.usersDao.findOneById(id);
+    }
 }
