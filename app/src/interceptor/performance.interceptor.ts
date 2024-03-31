@@ -10,10 +10,14 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { format } from 'util';
 
+/**
+ * This interceptor log the performance of each request.
+ */
+
 @Injectable()
 export class PerformanceInterceptor implements NestInterceptor {
   private static readonly LOG_FORMAT =
-    '[PerformanceInterceptor] time:%sms host:%s user-agent:%s referer:%s';
+    '[PerformanceInterceptor] host:%s request-id:%s time:%sms';
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const start = Date.now();
@@ -24,10 +28,9 @@ export class PerformanceInterceptor implements NestInterceptor {
       tap(() => {
         const endMessage = format(
           PerformanceInterceptor.LOG_FORMAT,
-          Date.now() - start,
           req.headers['host'],
-          req.headers['user-agent'],
-          req.headers['referer'],
+          req.headers['Req-Id'], // Added by requestIdAppender
+          Date.now() - start,
         );
         Logger.log(endMessage);
       }),

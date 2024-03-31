@@ -3,7 +3,8 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { UsersModule } from './module/users/users.module';
-import { accessLogger } from './middleware/logger.middleware';
+import { requestIdAppender } from './middleware/request-id-appender.middleware';
+import { accessLogger } from './middleware/access-logger.middleware';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { AllExceptionsFilter } from './filter/all-exception.filter';
 import { PerformanceInterceptor } from './interceptor/performance.interceptor';
@@ -42,6 +43,6 @@ import { AuthGuard } from './guard/auth.guard';
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(accessLogger).forRoutes('/*');
+    consumer.apply(requestIdAppender, accessLogger).forRoutes('/*');
   }
 }
