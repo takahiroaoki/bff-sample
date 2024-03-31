@@ -19,9 +19,7 @@ import { AuthGuard } from './guard/auth.guard';
       sortSchema: true,
     }),
     ConfigModule.forRoot({
-      envFilePath: [
-        join(process.cwd(), 'env/dev.env'),
-      ],
+      envFilePath: [join(process.cwd(), 'env/dev.env')],
       isGlobal: true,
     }),
     UsersModule,
@@ -44,8 +42,6 @@ import { AuthGuard } from './guard/auth.guard';
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(accessLogger)
-      .forRoutes('/*');
+    consumer.apply(accessLogger).forRoutes('/*');
   }
 }

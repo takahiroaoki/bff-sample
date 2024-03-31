@@ -14,7 +14,9 @@ export const usersMockData: UsersMockData = {
         users: [
             {
                 id: "1",
-                mail: "test1@example.com"
+                mail: "test1@example.com",
+                firstName: "firstName1",
+                lastName: "lastName1",
             },
             {
                 id: "2",
@@ -33,5 +35,5 @@ export const usersMockData: UsersMockData = {
                 mail: "test5@example.com"
             },
         ]
-    }
+    },
 }
