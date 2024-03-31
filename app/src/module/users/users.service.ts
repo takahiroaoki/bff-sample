@@ -4,13 +4,13 @@ import { User } from 'src/model/user.model';
 
 @Injectable()
 export class UsersService {
-    constructor(private readonly usersDao: UsersDao) { }
+  constructor(private readonly usersDao: UsersDao) {}
 
-    async findAll(): Promise<User[]> {
-        return this.usersDao.findAll();
-    }
+  async findAll(): Promise<User[]> {
+    return this.usersDao.findAll();
+  }
 
-    async findOneById(id: string): Promise<User> {
-        return this.usersDao.findOneById(id);
-    }
+  async findOneById(id: string): Promise<User> {
+    return this.usersDao.findOneById(id);
+  }
 }
