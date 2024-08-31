@@ -4,6 +4,9 @@ This is a sample application for BFF(Backend for Frontend).
 
 ## Requirement
 - Docker Desktop
+- VSCode & Dev Container Extension
+
+※The maintainer uses codespaces.
 
 ## Tech Stack
 - TypeScript
